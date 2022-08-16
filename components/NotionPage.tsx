@@ -18,7 +18,6 @@ import {
   getBlockTitle,
   getPageProperty,
   formatDate,
-  parsePageId,
   normalizeTitle
 } from 'notion-utils'
 import { mapPageUrl, getCanonicalPageUrl } from 'lib/map-page-url'
