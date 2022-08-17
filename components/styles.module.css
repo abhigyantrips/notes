@@ -46,7 +46,7 @@
 
 .footer {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto auto 0;
   padding: 8px;
 
@@ -110,7 +110,7 @@
   }
 
   .footer > div {
-    margin-top: 1em;
+    margin: 0.5em 0.5em;
   }
 
   .footer .settings {
@@ -148,16 +148,6 @@
 
 .pageActions a:hover {
   transition: all 50ms ease-out;
-}
-
-.likeTweet:hover {
-  background: #f6e3e8;
-  color: #e0265e;
-}
-
-.retweet:hover {
-  color: #19bf64;
-  background: #e5f2e8;
 }
 
 .hidden {
