@@ -18,7 +18,7 @@ export default siteConfig({
   defaultPageCoverPosition: 0.5,
 
   isPreviewImageSupportEnabled: true,
-  isRedisEnabled: false,
+  isRedisEnabled: true,
   includeNotionIdInUrls: false,
 
   pageUrlOverrides: {

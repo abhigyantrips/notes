@@ -9,7 +9,7 @@ export async function pageAcl({
     return {
       error: {
         statusCode: 404,
-        message: 'Unable to resolve notion site'
+        message: 'Unable to resolve Notion site'
       }
     }
   }
