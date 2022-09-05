@@ -419,11 +419,6 @@
   "resolved" "https://registry.npmjs.org/@react-icons/all-files/-/all-files-4.1.0.tgz"
   "version" "4.1.0"
 
-"@sentry/types@^6.11.0":
-  "integrity" "sha512-fzLiQPrjJQ8HgFgA2VqnpLiEOrTJ2ItRY8RY7Cn4038HACoYWYDjrkdVJQBq6IyrxxkgWOSLZXnv85uozBQC+g=="
-  "resolved" "https://registry.npmjs.org/@sentry/types/-/types-6.19.4.tgz"
-  "version" "6.19.4"
-
 "@sindresorhus/is@^4.0.0", "@sindresorhus/is@^4.6.0":
   "integrity" "sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw=="
   "resolved" "https://registry.npmjs.org/@sindresorhus/is/-/is-4.6.0.tgz"
@@ -1659,22 +1654,12 @@
   dependencies:
     "reusify" "^1.0.4"
 
-"fathom-client@^3.4.1":
-  "integrity" "sha512-iQFKx9B9RDeGLzgNqsaXWg3Fvu7yfq1Z8GjpAG3DP8IoGoPRWOOktpM7DUKiUzoE3d37hdvDQvkqUHfNzVwimg=="
-  "resolved" "https://registry.npmjs.org/fathom-client/-/fathom-client-3.4.1.tgz"
-  "version" "3.4.1"
-
 "fd-slicer@~1.1.0":
   "integrity" "sha1-JcfInLH5B3+IkbvmHY85Dq4lbx4= sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g=="
   "resolved" "https://registry.npmjs.org/fd-slicer/-/fd-slicer-1.1.0.tgz"
   "version" "1.1.0"
   dependencies:
     "pend" "~1.2.0"
-
-"fflate@^0.4.1":
-  "integrity" "sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA=="
-  "resolved" "https://registry.npmjs.org/fflate/-/fflate-0.4.8.tgz"
-  "version" "0.4.8"
 
 "file-entry-cache@^6.0.1":
   "integrity" "sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg=="
@@ -3087,15 +3072,6 @@
     "picocolors" "^1.0.0"
     "source-map-js" "^1.0.1"
 
-"posthog-js@^1.20.2":
-  "integrity" "sha512-0HxG2aVObhGz6I98+N/tTZ0Azkus6vYPDS+TiDFO1UWx88QVzflcTAhybsBdhG0xfmghuC6jvFui73hjdimZeg=="
-  "resolved" "https://registry.npmjs.org/posthog-js/-/posthog-js-1.20.2.tgz"
-  "version" "1.20.2"
-  dependencies:
-    "@sentry/types" "^6.11.0"
-    "fflate" "^0.4.1"
-    "rrweb-snapshot" "^1.1.7"
-
 "prebuild-install@^6.1.2":
   "integrity" "sha512-Z4vpywnK1lBg+zdPCVCsKq0xO66eEV9rWo2zrROGGiRS4JtueBOdlB1FnY8lcy7JsUud/Q3ijUxyWN26Ika0vQ=="
   "resolved" "https://registry.npmjs.org/prebuild-install/-/prebuild-install-6.1.4.tgz"
@@ -3530,11 +3506,6 @@
   "version" "3.0.2"
   dependencies:
     "glob" "^7.1.3"
-
-"rrweb-snapshot@^1.1.7":
-  "integrity" "sha512-eP5pirNjP5+GewQfcOQY4uBiDnpqxNRc65yKPW0eSoU1XamDfc4M8oqpXGMyUyvLyxFDB0q0+DChuxxiU2FXBQ=="
-  "resolved" "https://registry.npmjs.org/rrweb-snapshot/-/rrweb-snapshot-1.1.14.tgz"
-  "version" "1.1.14"
 
 "rss@^1.2.2":
   "integrity" "sha1-UKFpiHYTgTOnT5oF0r3I240nqSE= sha512-xUhRTgslHeCBeHAqaWSbOYTydN2f0tAzNXvzh3stjz7QDhQMzdgHf3pfgNIngeytQflrFPfy6axHilTETr6gDg=="
