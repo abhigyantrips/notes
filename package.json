@@ -5,9 +5,6 @@
   "description": "A Notion space for all of Abhigyan's notes.",
   "author": "Abhigyan Trips <abhigyantrips@gmail.com>",
   "repository": "abhigyantrips/notes",
-  "engines": {
-    "node": ">=14.17"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
