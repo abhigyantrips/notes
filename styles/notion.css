@@ -221,6 +221,11 @@
   overflow: hidden;
 }
 
+.notion-quote {
+  font-size: inherit;
+  color: gray;
+}
+
 .notion-row {
   overflow: unset;
 }
