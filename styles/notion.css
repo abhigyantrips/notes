@@ -217,6 +217,10 @@
   border-radius: 0.375rem;
 }
 
+.notion-equation-block {
+  overflow: hidden;
+}
+
 .notion-row {
   overflow: unset;
 }
@@ -240,3 +244,4 @@
   background: hsla(0, 0%, 10%, 0.8);
   backdrop-filter: saturate(100%) blur(10px);
 }
+
