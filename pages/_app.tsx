@@ -6,7 +6,13 @@ import 'katex/dist/katex.min.css'
 
 import * as React from 'react'
 import type { AppProps } from 'next/app'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Component {...pageProps} />
+      <Analytics />
+    </>
+  )
 }
