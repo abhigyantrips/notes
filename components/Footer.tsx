@@ -2,12 +2,11 @@ import * as React from 'react'
 import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter'
 import { FaGithub } from '@react-icons/all-files/fa/FaGithub'
 import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin'
+import { FaDiscord } from '@react-icons/all-files/fa/FaDiscord'
 
 import * as config from 'lib/config'
 
 import styles from './styles.module.css'
-
-// TODO: merge the data and icons from PageSocial with the social links in Footer
 
 export const FooterImpl: React.FC = () => {
 
@@ -44,11 +43,23 @@ export const FooterImpl: React.FC = () => {
           <a
             className={styles.linkedin}
             href={`https://www.linkedin.com/in/${config.linkedin}`}
-            title={`LinkedIn ${config.author}`}
+            title='LinkedIn'
             target='_blank'
             rel='noopener noreferrer'
           >
             <FaLinkedin />
+          </a>
+        )}
+
+        {(
+          <a
+            className={styles.discord}
+            href='https://abhigyantrips.dev/discord'
+            title='Discord Server'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaDiscord />
           </a>
         )}
       </div>

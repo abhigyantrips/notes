@@ -86,16 +86,11 @@
   transition: color 50ms ease-out;
 }
 
-.twitter:hover {
-  color: #2795e9;
-}
-
-.github:hover {
-  color: #c9510c;
-}
-
-.linkedin:hover {
-  color: #0077b5;
+.twitter:hover,
+.github:hover,
+.linkedin:hover,
+.discord:hover {
+  color: #e99827;
 }
 
 .comments {
