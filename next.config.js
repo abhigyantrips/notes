@@ -1,7 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const withOptimizedImages = require('next-optimized-images')
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+})
 
-module.exports = withOptimizedImages({
+module.exports = withBundleAnalyzer({
   staticPageGenerationTimeout: 300,
   images: {
     domains: [
@@ -16,6 +18,6 @@ module.exports = withOptimizedImages({
     formats: ['image/avif', 'image/webp'],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    optimizeImagesInDev: true
+    unoptimized: true
   }
 })
