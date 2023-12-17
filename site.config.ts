@@ -21,20 +21,5 @@ export default siteConfig({
   isRedisEnabled: true,
   includeNotionIdInUrls: false,
 
-  pageUrlOverrides: {
-    '/about': '4a02e40d758344fdb4b683a313770caa',
-   '/contact': 'b7be311856624cc9b50ce3d75adf5b86'
-  },
-
   navigationStyle: 'custom',
-  navigationLinks: [
-    {
-      title: 'About',
-      pageId: '4a02e40d758344fdb4b683a313770caa'
-    },
-    {
-      title: 'Contact',
-      pageId: 'b7be311856624cc9b50ce3d75adf5b86'
-    }
-  ]
 })
