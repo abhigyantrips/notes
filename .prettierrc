@@ -5,6 +5,7 @@
     "^(next/(.*)$)|^(next$)",
     "^types$",
     "^@/types/(.*)$",
+    "^@/site.config",
     "^@/lib/(.*)$",
     "^@/hooks/(.*)$",
     "^@/components/(.*)$",
