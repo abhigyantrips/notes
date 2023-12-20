@@ -2,8 +2,6 @@ import { ExtendedRecordMap, PageMap } from 'notion-types';
 
 export * from 'notion-types';
 
-export type NavigationStyle = 'default' | 'custom';
-
 export interface PageError {
   message?: string;
   statusCode: number;
@@ -34,6 +32,12 @@ export interface Site {
   // opengraph metadata
   description?: string;
   image?: string;
+}
+
+export interface NavigationLink {
+  title: string;
+  pageId?: string;
+  url: string;
 }
 
 export interface SiteMap {

@@ -4,8 +4,8 @@
  * This file pulls from the root "site.config.ts" as well as environment variables
  * for optional depenencies.
  */
-import {
-  NavigationStyle,
+import type {
+  NavigationLink,
   PageUrlOverridesInverseMap,
   PageUrlOverridesMap,
   Site,
@@ -13,7 +13,6 @@ import {
 import { parsePageId } from 'notion-utils';
 
 import { getEnv, getSiteConfig } from './get-config-value';
-import { NavigationLink } from './site-config';
 
 export const rootNotionPageId: string = parsePageId(
   getSiteConfig('rootNotionPageId'),
@@ -77,24 +76,10 @@ export const isPreviewImageSupportEnabled: boolean = getSiteConfig(
   false
 );
 
-// Optional whether or not to include the Notion ID in page URLs or just use slugs
-export const includeNotionIdInUrls: boolean = getSiteConfig(
-  'includeNotionIdInUrls',
-  !!isDev
-);
-
-export const navigationStyle: NavigationStyle = getSiteConfig(
-  'navigationStyle',
-  'default'
-);
-
 export const navigationLinks: Array<NavigationLink> | null = getSiteConfig(
   'navigationLinks',
   null
 );
-
-// Optional site search
-export const isSearchEnabled: boolean = getSiteConfig('isSearchEnabled', true);
 
 // ----------------------------------------------------------------------------
 
@@ -122,13 +107,6 @@ export const isServer = typeof window === 'undefined';
 
 export const port = getEnv('PORT', '3000');
 export const host = isDev ? `http://localhost:${port}` : `https://${domain}`;
-
-export const apiBaseUrl = `/api`;
-
-export const api = {
-  searchNotion: `${apiBaseUrl}/search-notion`,
-  getSocialImage: `${apiBaseUrl}/social-image`,
-};
 
 // ----------------------------------------------------------------------------
 

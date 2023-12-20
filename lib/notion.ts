@@ -1,13 +1,9 @@
-import { ExtendedRecordMap, SearchParams, SearchResults } from 'notion-types';
+import { ExtendedRecordMap } from 'notion-types';
 import { mergeRecordMaps } from 'notion-utils';
 import pMap from 'p-map';
 import pMemoize from 'p-memoize';
 
-import {
-  isPreviewImageSupportEnabled,
-  navigationLinks,
-  navigationStyle,
-} from './config';
+import { isPreviewImageSupportEnabled, navigationLinks } from './config';
 import { notion } from './notion-api';
 import { getPreviewImageMap } from './preview-images';
 
@@ -17,11 +13,11 @@ const getNavigationLinkPages = pMemoize(
       .map((link) => link.pageId)
       .filter(Boolean);
 
-    if (navigationStyle !== 'default' && navigationLinkPageIds.length) {
+    if (navigationLinkPageIds.length) {
       return pMap(
         navigationLinkPageIds,
         async (navigationLinkPageId) =>
-          notion.getPage(navigationLinkPageId, {
+          notion.getPage(navigationLinkPageId!, {
             chunkLimit: 1,
             fetchMissingBlocks: false,
             fetchCollections: false,
@@ -39,20 +35,14 @@ const getNavigationLinkPages = pMemoize(
 
 export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
   let recordMap = await notion.getPage(pageId);
+  const navigationLinkRecordMaps = await getNavigationLinkPages();
 
-  if (navigationStyle !== 'default') {
-    // ensure that any pages linked to in the custom navigation header have
-    // their block info fully resolved in the page record map so we know
-    // the page title, slug, etc.
-    const navigationLinkRecordMaps = await getNavigationLinkPages();
-
-    if (navigationLinkRecordMaps?.length) {
-      recordMap = navigationLinkRecordMaps.reduce(
-        (map, navigationLinkRecordMap) =>
-          mergeRecordMaps(map, navigationLinkRecordMap),
-        recordMap
-      );
-    }
+  if (navigationLinkRecordMaps?.length) {
+    recordMap = navigationLinkRecordMaps.reduce(
+      (map, navigationLinkRecordMap) =>
+        mergeRecordMaps(map, navigationLinkRecordMap),
+      recordMap
+    );
   }
 
   if (isPreviewImageSupportEnabled) {
@@ -61,8 +51,4 @@ export async function getPage(pageId: string): Promise<ExtendedRecordMap> {
   }
 
   return recordMap;
-}
-
-export async function search(params: SearchParams): Promise<SearchResults> {
-  return notion.search(params);
 }

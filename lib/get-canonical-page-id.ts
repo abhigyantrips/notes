@@ -9,7 +9,7 @@ import { inversePageUrlOverrides } from './config';
 export function getCanonicalPageId(
   pageId: string,
   recordMap: ExtendedRecordMap,
-  { uuid = true }: { uuid?: boolean } = {}
+  { uuid = false }: { uuid?: boolean } = {}
 ): string | null {
   const cleanPageId = parsePageId(pageId, { uuid: false });
   if (!cleanPageId) {

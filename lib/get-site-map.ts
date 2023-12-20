@@ -2,18 +2,12 @@ import * as types from '@/types';
 import { getAllPagesInSpace, uuidToId } from 'notion-utils';
 import pMemoize from 'p-memoize';
 
-import { includeNotionIdInUrls } from './config';
 import * as config from './config';
 import { getCanonicalPageId } from './get-canonical-page-id';
 import { notion } from './notion-api';
 
-const uuid = !!includeNotionIdInUrls;
-
 export async function getSiteMap(): Promise<types.SiteMap> {
-  const partialSiteMap = await getAllPages(
-    config.rootNotionPageId,
-    config.rootNotionSpaceId
-  );
+  const partialSiteMap = await getAllPages(config.rootNotionPageId);
 
   return {
     site: config.site,
@@ -26,8 +20,7 @@ const getAllPages = pMemoize(getAllPagesImpl, {
 });
 
 async function getAllPagesImpl(
-  rootNotionPageId: string,
-  rootNotionSpaceId: string
+  rootNotionPageId: string
 ): Promise<Partial<types.SiteMap>> {
   const getPage = async (pageId: string, ...args) => {
     console.log('\nnotion getPage', uuidToId(pageId));
@@ -36,7 +29,7 @@ async function getAllPagesImpl(
 
   const pageMap = await getAllPagesInSpace(
     rootNotionPageId,
-    rootNotionSpaceId,
+    undefined,
     getPage
   );
 
@@ -47,24 +40,20 @@ async function getAllPagesImpl(
         throw new Error(`Error loading page "${pageId}"`);
       }
 
-      const canonicalPageId = getCanonicalPageId(pageId, recordMap, {
-        uuid,
-      });
+      const canonicalPageId = getCanonicalPageId(pageId, recordMap);
 
-      if (map[canonicalPageId]) {
-        // you can have multiple pages in different collections that have the same id
-        // TODO: we may want to error if neither entry is a collection page
+      if (map[canonicalPageId! as keyof typeof map]) {
         console.warn('error duplicate canonical page id', {
           canonicalPageId,
           pageId,
-          existingPageId: map[canonicalPageId],
+          existingPageId: map[canonicalPageId! as keyof typeof map],
         });
 
         return map;
       } else {
         return {
           ...map,
-          [canonicalPageId]: pageId,
+          [canonicalPageId! as keyof typeof map]: pageId,
         };
       }
     },
