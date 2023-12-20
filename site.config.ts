@@ -9,16 +9,17 @@ export const siteConfig = {
   author: 'Abhigyan Trips',
   description: "A Notion space for all of Abhigyan's notes.",
 
-  twitter: 'AbhigyanTrips',
-  github: 'abhigyantrips',
-  linkedin: 'abhigyantrips',
-
   defaultPageIcon: 'https://www.abhigyantrips.dev/assets/profile.png',
   defaultPageCover: 'https://www.abhigyantrips.dev/assets/header.png',
   defaultPageCoverPosition: 0.5,
 
-  isPreviewImageSupportEnabled: true,
   isRedisEnabled: true,
+
+  mediaLinks: {
+    instagram: 'https://instagram.com/gyaanibutternaan',
+    github: 'https://github.com/abhigyantrips',
+    linkedin: 'https://linkedin.com/in/abhigyantrips',
+  },
 
   navigationLinks: [
     {

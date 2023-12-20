@@ -70,18 +70,10 @@ export const defaultPageCoverPosition: number = getSiteConfig(
   0.5
 );
 
-// Optional whether or not to enable support for LQIP preview images
-export const isPreviewImageSupportEnabled: boolean = getSiteConfig(
-  'isPreviewImageSupportEnabled',
-  false
-);
-
 export const navigationLinks: Array<NavigationLink> | null = getSiteConfig(
   'navigationLinks',
   null
 );
-
-// ----------------------------------------------------------------------------
 
 // Optional redis instance for persisting preview images
 export const isRedisEnabled: boolean =
