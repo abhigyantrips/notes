@@ -1,3 +1,6 @@
+import 'katex/dist/katex.min.css';
+import 'react-notion-x/src/styles.css';
+
 import type { Metadata, Viewport } from 'next';
 
 import { siteConfig } from '@/site.config';
@@ -11,6 +14,8 @@ import TailwindIndicator from '@/components/tailwind-indicator';
 import ThemeProvider from '@/components/theme-provider';
 
 import '@/styles/globals.css';
+import '@/styles/notion.css';
+import '@/styles/prism-theme.css';
 
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`

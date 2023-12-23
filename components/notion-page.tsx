@@ -1,26 +1,19 @@
-import * as types from '@/types';
-// utils
-import { formatDate, getBlockTitle } from 'notion-utils';
-// core notion renderer
-import { NotionRenderer } from 'react-notion-x';
+'use client';
+
+import type { PageProps } from '@/types';
+import { getBlockTitle } from 'notion-utils';
+import { type MapImageUrlFn, NotionRenderer } from 'react-notion-x';
 
 import * as React from 'react';
 
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
-import * as config from '@/lib/config';
 import { mapImageUrl } from '@/lib/map-image-url';
 import { getCanonicalPageUrl, mapPageUrl } from '@/lib/map-page-url';
-import { site } from '@/lib/site';
 
 import NotFound from '@/app/not-found';
-
-// -----------------------------------------------------------------------------
-// dynamic imports for optional components
-// -----------------------------------------------------------------------------
 
 const Code = dynamic(() =>
   import('react-notion-x/build/third-party/code').then(async (m) => {
@@ -71,58 +64,7 @@ const Modal = dynamic(
   }
 );
 
-const propertyLastEditedTimeValue = (
-  { block, pageHeader },
-  defaultFn: () => React.ReactNode
-) => {
-  if (pageHeader && block?.last_edited_time) {
-    return `Last updated ${formatDate(block?.last_edited_time, {
-      month: 'long',
-    })}`;
-  }
-
-  return defaultFn();
-};
-
-const propertyDateValue = (
-  { data, schema, pageHeader },
-  defaultFn: () => React.ReactNode
-) => {
-  if (pageHeader && schema?.name?.toLowerCase() === 'published') {
-    const publishDate = data?.[0]?.[1]?.[0]?.[1]?.start_date;
-
-    if (publishDate) {
-      return `Published ${formatDate(publishDate, {
-        month: 'long',
-      })}`;
-    }
-  }
-
-  return defaultFn();
-};
-
-const propertyTextValue = (
-  { schema, pageHeader },
-  defaultFn: () => React.ReactNode
-) => {
-  if (pageHeader && schema?.name?.toLowerCase() === 'author') {
-    return <b>{defaultFn()}</b>;
-  }
-
-  return defaultFn();
-};
-
-export const NotionPage: React.FC<types.PageProps> = ({
-  site,
-  recordMap,
-  error,
-  pageId,
-  tagsPage,
-  propertyToFilterName,
-}) => {
-  const router = useRouter();
-  const lite = useSearchParam('lite');
-
+export function NotionPage({ site, recordMap, error, pageId }: PageProps) {
   const components = React.useMemo(
     () => ({
       nextImage: Image,
@@ -131,43 +73,25 @@ export const NotionPage: React.FC<types.PageProps> = ({
       Collection,
       Equation,
       Modal,
-      propertyLastEditedTimeValue,
-      propertyTextValue,
-      propertyDateValue,
     }),
     []
   );
 
   const siteMapPageUrl = React.useMemo(() => {
     const params: any = {};
-    if (lite) params.lite = lite;
 
     const searchParams = new URLSearchParams(params);
     return mapPageUrl(site!, recordMap!, searchParams);
-  }, [site, recordMap, lite]);
+  }, [site, recordMap]);
 
   const keys = Object.keys(recordMap?.block || {});
   const block = recordMap?.block?.[keys[0]]?.value;
-
-  // const isRootPage =
-  //   parsePageId(block?.id) === parsePageId(site?.rootNotionPageId)
-  const isBlogPost =
-    block?.type === 'page' && block?.parent_table === 'collection';
-
-  const showTableOfContents = !!isBlogPost;
-  const minTableOfContentsItems = 3;
-
-  if (router.isFallback) {
-    return <Loading />;
-  }
 
   if (error || !site || !block) {
     return <NotFound />;
   }
 
-  const name = getBlockTitle(block, recordMap) || site.name;
-  const title =
-    tagsPage && propertyToFilterName ? `${propertyToFilterName} ${name}` : name;
+  const title = getBlockTitle(block, recordMap) || site.name;
 
   console.log('notion page', {
     isDev: process.env.NODE_ENV === 'development',
@@ -192,19 +116,18 @@ export const NotionPage: React.FC<types.PageProps> = ({
   return (
     <>
       <NotionRenderer
-        darkMode={isDarkMode}
         components={components}
         recordMap={recordMap}
         rootPageId={site.rootNotionPageId}
         rootDomain={site.domain}
         previewImages={!!recordMap.preview_images}
         showCollectionViewDropdown={false}
-        showTableOfContents={showTableOfContents}
-        minTableOfContentsItems={minTableOfContentsItems}
+        showTableOfContents={true}
+        minTableOfContentsItems={3}
         linkTableTitleProperties={false}
         mapPageUrl={siteMapPageUrl}
-        mapImageUrl={mapImageUrl}
+        mapImageUrl={mapImageUrl as MapImageUrlFn}
       />
     </>
   );
-};
+}

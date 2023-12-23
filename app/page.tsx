@@ -1,9 +1,8 @@
 import type { PageProps } from '@/types';
 
-import * as React from 'react';
-
 import { siteConfig } from '@/site.config';
 
+import { notion } from '@/lib/notion-api';
 import { resolveNotionPage } from '@/lib/resolve-notion-page';
 import { site } from '@/lib/site';
 
@@ -11,9 +10,9 @@ import { NotionPage } from '@/components/notion-page';
 
 export async function getPageProps() {
   try {
-    const props = await resolveNotionPage(site.domain);
+    const recordMap = notion.getPage(siteConfig.rootNotionPageId);
 
-    return props;
+    return recordMap;
   } catch (err) {
     console.error('page error', site.domain, err);
 
@@ -22,7 +21,6 @@ export async function getPageProps() {
 }
 
 export default async function NotionDomainPage() {
-  const props = await getPageProps();
-
-  return <NotionPage {...props} />;
+  const recordMap = await getPageProps();
+  return <NotionPage recordMap={recordMap} site={site} />;
 }
