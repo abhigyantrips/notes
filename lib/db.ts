@@ -3,7 +3,7 @@ import KeyvRedis from '@keyvhq/redis';
 
 import { siteConfig } from '@/site.config';
 
-import { isRedisEnabled, redisNamespace, redisUrl } from './config';
+import { redisNamespace, redisUrl } from './config';
 
 let db: Keyv;
 if (siteConfig.isRedisEnabled) {

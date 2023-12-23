@@ -3,7 +3,7 @@ import { defaultMapImageUrl } from 'react-notion-x';
 
 import { siteConfig } from '@/site.config';
 
-export const mapImageUrl = (url: string, block: Block) => {
+export function mapImageUrl(url: string, block: Block): string | null {
   if (
     url === siteConfig.defaultPageCover ||
     url === siteConfig.defaultPageIcon
@@ -12,4 +12,4 @@ export const mapImageUrl = (url: string, block: Block) => {
   }
 
   return defaultMapImageUrl(url, block);
-};
+}

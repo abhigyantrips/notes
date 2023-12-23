@@ -23,7 +23,7 @@ const getAllPages = pMemoize(getAllPagesImpl, {
 async function getAllPagesImpl(
   rootNotionPageId: string
 ): Promise<Partial<types.SiteMap>> {
-  const getPage = async (pageId: string, ...args) => {
+  const getPage = async (pageId: string, ...args: any) => {
     console.log('\nnotion getPage', uuidToId(pageId));
     return notion.getPage(pageId, ...args);
   };
