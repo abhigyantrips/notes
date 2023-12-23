@@ -8,7 +8,7 @@ import { buttonVariants } from '@/components/ui/button';
 
 export default function IconList() {
   return (
-    <>
+    <nav className="flex items-center space-x-2 md:space-x-1">
       {siteConfig.mediaLinks.instagram && (
         <Link
           href={siteConfig.mediaLinks.instagram}
@@ -60,6 +60,6 @@ export default function IconList() {
           </div>
         </Link>
       )}
-    </>
+    </nav>
   );
 }
