@@ -1,16 +1,13 @@
 import { ExtendedRecordMap } from 'notion-types';
 import { parsePageId } from 'notion-utils';
 
+import { siteConfig } from '@/site.config';
+
 import * as acl from './acl';
-import {
-  environment,
-  pageUrlAdditions,
-  pageUrlOverrides,
-  site,
-} from './config';
 import { db } from './db';
 import { getSiteMap } from './get-site-map';
 import { getPage } from './notion';
+import { site } from './site';
 
 export async function resolveNotionPage(domain: string, rawPageId?: string) {
   let pageId: string;
@@ -20,20 +17,19 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
     pageId = parsePageId(rawPageId);
 
     if (!pageId) {
-      // check if the site configuration provides an override or a fallback for
-      // the page's URI
-      const override =
-        pageUrlOverrides[rawPageId] || pageUrlAdditions[rawPageId];
+      const override = siteConfig.navigationLinks?.find((link) => {
+        return link.pageId == rawPageId;
+      });
 
       if (override) {
-        pageId = parsePageId(override);
+        pageId = parsePageId(override.pageId);
       }
     }
 
     const useUriToPageIdCache = true;
-    const cacheKey = `uri-to-page-id:${domain}:${environment}:${rawPageId}`;
-    // TODO: should we use a TTL for these mappings or make them permanent?
-    // const cacheTTL = 8.64e7 // one day in milliseconds
+    const cacheKey = `uri-to-page-id:${domain}:${
+      process.env.NODE_ENV || 'development'
+    }:${rawPageId}`;
     const cacheTTL = undefined; // disable cache TTL
 
     if (!pageId && useUriToPageIdCache) {
@@ -42,7 +38,7 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
         pageId = await db.get(cacheKey);
 
         // console.log(`redis get "${cacheKey}"`, pageId)
-      } catch (err) {
+      } catch (err: any) {
         // ignore redis errors
         console.warn(`redis error get "${cacheKey}"`, err.message);
       }
@@ -69,7 +65,7 @@ export async function resolveNotionPage(domain: string, rawPageId?: string) {
             await db.set(cacheKey, pageId, cacheTTL);
 
             // console.log(`redis set "${cacheKey}"`, pageId, { cacheTTL })
-          } catch (err) {
+          } catch (err: any) {
             // ignore redis errors
             console.warn(`redis error set "${cacheKey}"`, err.message);
           }

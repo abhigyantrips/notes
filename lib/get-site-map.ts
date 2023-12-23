@@ -2,15 +2,16 @@ import * as types from '@/types';
 import { getAllPagesInSpace, uuidToId } from 'notion-utils';
 import pMemoize from 'p-memoize';
 
-import * as config from './config';
+import { site } from '@/lib/site';
+
 import { getCanonicalPageId } from './get-canonical-page-id';
 import { notion } from './notion-api';
 
 export async function getSiteMap(): Promise<types.SiteMap> {
-  const partialSiteMap = await getAllPages(config.rootNotionPageId);
+  const partialSiteMap = await getAllPages(site.rootNotionPageId);
 
   return {
-    site: config.site,
+    site: site,
     ...partialSiteMap,
   } as types.SiteMap;
 }

@@ -1,11 +1,12 @@
+import { ExtendedRecordMap, PreviewImage, PreviewImageMap } from '@/types';
 import got from 'got';
 import lqip from 'lqip-modern';
-import { ExtendedRecordMap, PreviewImage, PreviewImageMap } from 'notion-types';
 import { getPageImageUrls, normalizeUrl } from 'notion-utils';
 import pMap from 'p-map';
 import pMemoize from 'p-memoize';
 
-import { defaultPageCover, defaultPageIcon } from './config';
+import { siteConfig } from '@/site.config';
+
 import { db } from './db';
 import { mapImageUrl } from './map-image-url';
 
@@ -15,7 +16,7 @@ export async function getPreviewImageMap(
   const urls: string[] = getPageImageUrls(recordMap, {
     mapImageUrl,
   })
-    .concat([defaultPageIcon, defaultPageCover])
+    .concat([siteConfig.defaultPageIcon, siteConfig.defaultPageCover])
     .filter(Boolean);
 
   const previewImagesMap = Object.fromEntries(
@@ -44,7 +45,7 @@ async function createPreviewImage(
       if (cachedPreviewImage) {
         return cachedPreviewImage;
       }
-    } catch (err) {
+    } catch (err: any) {
       // ignore redis errors
       console.warn(`redis error get "${cacheKey}"`, err.message);
     }
@@ -61,13 +62,13 @@ async function createPreviewImage(
 
     try {
       await db.set(cacheKey, previewImage);
-    } catch (err) {
+    } catch (err: any) {
       // ignore redis errors
       console.warn(`redis error set "${cacheKey}"`, err.message);
     }
 
     return previewImage;
-  } catch (err) {
+  } catch (err: any) {
     console.warn('failed to create preview image', url, err.message);
     return null;
   }

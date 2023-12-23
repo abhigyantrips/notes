@@ -2,6 +2,8 @@ import { Site } from '@/types';
 import { ExtendedRecordMap } from 'notion-types';
 import { parsePageId, uuidToId } from 'notion-utils';
 
+import { siteConfig } from '@/site.config';
+
 import { getCanonicalPageId } from './get-canonical-page-id';
 
 export const mapPageUrl =

@@ -1,15 +1,16 @@
-import { ExtendedRecordMap } from 'notion-types';
+import { ExtendedRecordMap } from '@/types';
 import { mergeRecordMaps } from 'notion-utils';
 import pMap from 'p-map';
 import pMemoize from 'p-memoize';
 
-import { navigationLinks } from './config';
+import { siteConfig } from '@/site.config';
+
 import { notion } from './notion-api';
 import { getPreviewImageMap } from './preview-images';
 
 const getNavigationLinkPages = pMemoize(
   async (): Promise<ExtendedRecordMap[]> => {
-    const navigationLinkPageIds = (navigationLinks || [])
+    const navigationLinkPageIds = (siteConfig.navigationLinks || [])
       .map((link) => link.pageId)
       .filter(Boolean);
 
