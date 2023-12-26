@@ -12,6 +12,7 @@ import Link from 'next/link';
 
 import { mapImageUrl } from '@/lib/map-image-url';
 import { getCanonicalPageUrl, mapPageUrl } from '@/lib/map-page-url';
+import { site } from '@/lib/site';
 
 import NotFound from '@/app/not-found';
 
@@ -46,7 +47,7 @@ const Code = dynamic(() =>
   })
 );
 const Equation = dynamic(() =>
-  import('react-notion-x/build/third-party/equation').then((m) => m.Equation)
+  import('@/components/notion/equation').then((m) => m.Equation)
 );
 const Collection = dynamic(() =>
   import('react-notion-x/build/third-party/collection').then(
@@ -64,7 +65,7 @@ const Modal = dynamic(
   }
 );
 
-export function NotionPage({ site, recordMap, error, pageId }: PageProps) {
+export function NotionPage({ recordMap, error, pageId }: PageProps) {
   const components = React.useMemo(
     () => ({
       nextImage: Image,
