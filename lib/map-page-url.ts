@@ -1,5 +1,4 @@
-import { Site } from '@/types';
-import { ExtendedRecordMap } from 'notion-types';
+import { ExtendedRecordMap, Site } from '@/types';
 import { parsePageId, uuidToId } from 'notion-utils';
 
 import { getCanonicalPageId } from '@/lib/get-canonical-page-id';

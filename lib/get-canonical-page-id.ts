@@ -1,4 +1,4 @@
-import { ExtendedRecordMap } from 'notion-types';
+import { ExtendedRecordMap } from '@/types';
 import {
   getCanonicalPageId as getCanonicalPageIdImpl,
   parsePageId,
