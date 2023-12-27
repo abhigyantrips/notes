@@ -3,9 +3,7 @@
   "importOrder": [
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
-    "^types$",
-    "^@/types/(.*)$",
-    "^@/site.config",
+    "^(types$)|(@/types)|(@/site.config)",
     "^@/lib/(.*)$",
     "^@/hooks/(.*)$",
     "^@/components/(.*)$",
