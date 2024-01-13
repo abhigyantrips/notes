@@ -4,10 +4,10 @@ import * as defaultTheme from 'tailwindcss/defaultTheme';
 module.exports = {
   darkMode: ['class'],
   content: [
-    './pages/**/*.{ts,tsx}',
+    './lib/**/*.{js,ts}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    './types/**/*.ts',
   ],
   theme: {
     container: {
@@ -20,6 +20,9 @@ module.exports = {
     extend: {
       colors: {
         border: 'hsl(var(--border))',
+        borderWidth: {
+          '3': '3px',
+        },
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
