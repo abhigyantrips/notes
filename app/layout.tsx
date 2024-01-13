@@ -1,5 +1,4 @@
 import 'katex/dist/katex.min.css';
-import 'react-notion-x/src/styles.css';
 
 import type { Metadata, Viewport } from 'next';
 
@@ -60,7 +59,7 @@ export default function RootLayout({
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />
-            <div className="mx-10 flex-1">{children}</div>
+            <main className="container flex-1 px-10">{children}</main>
             <Footer />
             <TailwindIndicator />
           </ThemeProvider>

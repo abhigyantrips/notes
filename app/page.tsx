@@ -1,7 +1,11 @@
+import { Suspense } from 'react';
+
 import { resolveNotionPage } from '@/lib/resolve-notion-page';
 import { site } from '@/lib/site';
 
-import { NotionPage } from '@/components/notion-page';
+import { Notion } from '@/components/notion';
+
+import Loading from '@/app/loading';
 
 export const revalidate = 60;
 
@@ -17,8 +21,12 @@ export async function getPageProps() {
   }
 }
 
-export default async function NotionDomainPage() {
+export default async function NotesPage() {
   const props = await getPageProps();
   console.log(props);
-  return <NotionPage {...props} />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <Notion {...props} />
+    </Suspense>
+  );
 }
