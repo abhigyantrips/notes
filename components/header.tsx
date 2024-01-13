@@ -14,7 +14,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky inset-0 top-0 z-50 flex h-16 w-full flex-col items-center justify-around border-b bg-opacity-80 px-6 py-0 backdrop-blur-[5px] backdrop-saturate-[180%]">
+    <header className="sticky inset-0 top-0 z-50 flex h-16 w-full flex-col items-center justify-around border-b bg-background/60 px-6 py-0 backdrop-blur-[5px] backdrop-saturate-[180%]">
       <nav className="container relative flex w-full flex-1 items-center">
         <div className="">
           {
