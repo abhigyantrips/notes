@@ -25,12 +25,16 @@
     "lucide-react": "^0.299.0",
     "next": "14.0.4",
     "next-themes": "^0.2.1",
+    "notion-client": "^6.16.0",
+    "notion-types": "^6.16.0",
+    "notion-utils": "^6.16.0",
     "p-map": "^7.0.0",
     "p-memoize": "^7.1.1",
     "prismjs": "^1.29.0",
     "react": "^18",
     "react-dom": "^18",
     "react-katex": "^3.0.1",
+    "react-snowfall": "^1.2.1",
     "tailwind-merge": "^2.1.0",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -39,6 +43,7 @@
     "@types/lodash": "^4.14.202",
     "@types/lqip-modern": "^1.1.7",
     "@types/node": "^20",
+    "@types/prismjs": "^1.26.3",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-katex": "^3.0.4",
@@ -48,6 +53,6 @@
     "postcss": "^8",
     "prettier-plugin-tailwindcss": "^0.5.9",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "typescript": "^5.3.3"
   }
 }

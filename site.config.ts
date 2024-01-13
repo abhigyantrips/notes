@@ -3,7 +3,8 @@ import type { NavigationLink } from '@/types';
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  rootNotionPageId: 'b9936d9c94d5432d907e2452703e3612',
+  rootNotionPageId: '2e22de6b770e4166be301490f6ffd420',
+  rootNotionSpaceId: undefined,
   name: "Abhigyan's Notes",
   domain: 'notes.abhigyantrips.dev',
   author: 'Abhigyan Trips',
@@ -11,9 +12,8 @@ export const siteConfig = {
 
   defaultPageIcon: 'https://www.abhigyantrips.dev/assets/profile.png',
   defaultPageCover: 'https://www.abhigyantrips.dev/assets/header.png',
-  defaultPageCoverPosition: 0.5,
 
-  isRedisEnabled: true,
+  isRedisEnabled: false,
 
   mediaLinks: {
     instagram: 'https://instagram.com/gyaanibutternaan',
